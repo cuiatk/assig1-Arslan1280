@@ -2,7 +2,7 @@
  * Redistribution of original or derived work requires permission of course staff.
  */
 package turtle;
-
+import java.lang.Math;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,7 +15,11 @@ public class TurtleSoup {
      * @param sideLength length of each side
      */
     public static void drawSquare(Turtle turtle, int sideLength) {
-        throw new RuntimeException("implement me!");
+        for(int i=0;i<4;i++)
+        {
+        	turtle.forward(sideLength);
+        	turtle.turn(90);
+        }
     }
 
     /**
@@ -28,7 +32,8 @@ public class TurtleSoup {
      * @return angle in degrees, where 0 <= angle < 360
      */
     public static double calculateRegularPolygonAngle(int sides) {
-        throw new RuntimeException("implement me!");
+    	double calculatedAngle = 180-(((float)360)/sides);
+    	return calculatedAngle;
     }
 
     /**
@@ -42,8 +47,10 @@ public class TurtleSoup {
      * @return the integer number of sides
      */
     public static int calculatePolygonSidesFromAngle(double angle) {
-        throw new RuntimeException("implement me!");
-    }
+    		angle = Math.round(angle);
+    		int sides = 360/(180-(int)angle);
+    		return sides;
+    	}
 
     /**
      * Given the number of sides, draw a regular polygon.
@@ -55,7 +62,12 @@ public class TurtleSoup {
      * @param sideLength length of each side
      */
     public static void drawRegularPolygon(Turtle turtle, int sides, int sideLength) {
-        throw new RuntimeException("implement me!");
+        for(int i=0;i<sides;i++)
+        {
+        	turtle.forward(sideLength);
+        	turtle.turn(180-calculateRegularPolygonAngle(sides));
+        }
+    	
     }
 
     /**
@@ -109,7 +121,15 @@ public class TurtleSoup {
      * @param turtle the turtle context
      */
     public static void drawPersonalArt(Turtle turtle) {
-        throw new RuntimeException("implement me!");
+    	for(int i=0;i<8;i++)
+    	{
+        	for(int j=0 ; j<10 ;j++)
+        	{
+            	turtle.forward(100);
+            	turtle.turn(135);    		
+        	}
+        	turtle.turn(45);
+    	}
     }
 
     /**
@@ -121,11 +141,11 @@ public class TurtleSoup {
      */
     public static void main(String args[]) {
         DrawableTurtle turtle = new DrawableTurtle();
-
-        drawSquare(turtle, 40);
-
+        
+        drawSquare(turtle, 40);                
+        
         // draw the window
-        turtle.draw();
+        turtle.draw();        
     }
 
 }
